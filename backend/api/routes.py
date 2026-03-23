@@ -1,7 +1,9 @@
 import shutil
 import pathlib
 from fastapi import APIRouter, UploadFile, File
-from src.utils import extract_audio, transcribe_audio, generate_notes, create_pdf
+from fastapi.responses import FileResponse
+from fastapi import HTTPException
+from backend.utils import extract_audio, transcribe_audio, generate_notes, create_pdf
 
 router = APIRouter()
 
@@ -47,3 +49,11 @@ def generate(file: UploadFile = File(...)):
     create_pdf(notes, filename=str(pdf_path))
 
     return {"status": "success", "text": text, "notes": notes, "pdf": str(pdf_path)}
+
+
+@router.get("/download/{filename}")
+def download_pdf(filename: str):
+    path = OUTPUTS_DIR / filename
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="File not found")
+    return FileResponse(path, media_type="application/pdf", filename=filename)

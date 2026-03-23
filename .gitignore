@@ -24,6 +24,14 @@ outputs/
 # Whisper model cache
 ~/.cache/whisper/
 
+# Frontend (React/Vite)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
+# Logs
+*.log
+
 # OS
 .DS_Store
 Thumbs.db
@@ -31,7 +39,3 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-
-# Logs
-*.log
-logs/
