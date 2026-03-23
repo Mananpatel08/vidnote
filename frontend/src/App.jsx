@@ -5,8 +5,7 @@ import {
   ResultsSection,
   UploadSection,
 } from "./components";
-
-const API_BASE = "http://localhost:8000";
+import { generateNotes, getDownloadUrl } from "./services";
 
 export default function App() {
   const [view, setView] = useState("upload"); // upload | results | history
@@ -22,16 +21,8 @@ export default function App() {
     setLoading(true);
     setError("");
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const res = await fetch(`${API_BASE}/notes`, {
-        method: "POST",
-        body: formData,
-      });
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
-      const data = await res.json();
+      const data = await generateNotes(file);
       setResult(data);
       setHistory((prev) => [
         {
@@ -54,8 +45,8 @@ export default function App() {
 
   const handleDownload = () => {
     if (!result?.pdf) return;
-    const filename = result.pdf.split("/").pop();
-    window.open(`${API_BASE}/download/${filename}`, "_blank");
+    const url = getDownloadUrl(result.pdf);
+    window.open(url, "_blank");
   };
 
   const reset = () => {

@@ -48,7 +48,7 @@ def generate(file: UploadFile = File(...)):
     notes = generate_notes(text)
     create_pdf(notes, filename=str(pdf_path))
 
-    return {"status": "success", "text": text, "notes": notes, "pdf": str(pdf_path)}
+    return {"status": "success", "text": text, "notes": notes, "pdf": pdf_path.name}
 
 
 @router.get("/download/{filename}")
