@@ -9,6 +9,7 @@ export const UploadSection = ({
   setError,
   loading,
   handleSubmit,
+  handleCancel,
 }) => {
   const fileRef = useRef();
   const [dragOver, setDragOver] = useState(false);
@@ -31,14 +32,15 @@ export const UploadSection = ({
       <div>
         <div className="section-label">new upload</div>
         <div
-          className={`upload-zone ${dragOver ? "drag-over" : ""}`}
-          onClick={() => fileRef.current?.click()}
+          className={`upload-zone ${dragOver ? "drag-over" : ""} ${loading ? "upload-disabled" : ""}`}
+          onClick={() => !loading && fileRef.current?.click()}
           onDragOver={(e) => {
+            if (loading) return;
             e.preventDefault();
             setDragOver(true);
           }}
           onDragLeave={() => setDragOver(false)}
-          onDrop={handleDrop}
+          onDrop={(e) => !loading && handleDrop(e)}
         >
           <div className="upload-icon">
             <Clapperboard />
@@ -59,7 +61,9 @@ export const UploadSection = ({
         {file && (
           <div className="file-selected">
             <div className="file-info">
-              <div className="file-icon"><Play size={14} fill="currentColor"/></div>
+              <div className="file-icon">
+                <Play size={14} fill="currentColor" />
+              </div>
               <div>
                 <div className="file-name">{file.name}</div>
                 <div className="file-size">{formatBytes(file.size)}</div>
@@ -81,6 +85,17 @@ export const UploadSection = ({
             </div>
             <div className="progress-bar-bg">
               <div className="progress-bar" />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginTop: "8px",
+              }}
+            >
+              <button className="cancel-btn" onClick={handleCancel}>
+                Cancel
+              </button>
             </div>
           </div>
         )}

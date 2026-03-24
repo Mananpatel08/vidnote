@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Header,
   HistorySection,
@@ -16,13 +16,17 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("notes");
   const [history, setHistory] = useState([]);
 
+  const abortRef = useRef(null);
+
   const handleSubmit = async () => {
     if (!file) return;
+    const controller = new AbortController();
+    abortRef.current = controller;
     setLoading(true);
     setError("");
 
     try {
-      const data = await generateNotes(file);
+      const data = await generateNotes(file, controller.signal);
       setResult(data);
       setHistory((prev) => [
         {
@@ -37,9 +41,14 @@ export default function App() {
       setView("results");
       setActiveTab("notes");
     } catch (err) {
-      setError(err.message || "Something went wrong.");
+      if (err.name === "AbortError") {
+        setError("Processing cancelled.");
+      } else {
+        setError(err.message || "Something went wrong.");
+      }
     } finally {
       setLoading(false);
+      abortRef.current = null;
     }
   };
 
@@ -47,6 +56,10 @@ export default function App() {
     if (!result?.pdf) return;
     const url = getDownloadUrl(result.pdf);
     window.open(url, "_blank");
+  };
+
+  const handleCancel = () => {
+    abortRef.current?.abort();
   };
 
   const reset = () => {
@@ -71,6 +84,7 @@ export default function App() {
             setError={setError}
             loading={loading}
             handleSubmit={handleSubmit}
+            handleCancel={handleCancel}
           />
         )}
 
