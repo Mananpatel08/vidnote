@@ -10,18 +10,18 @@ You write in Markdown. A PDF generator will convert your Markdown using these ex
 
 MARKDOWN → PDF OUTPUT
 ─────────────────────────────────────────
-# Title           → Large bold heading + thick underline
-## Section        → Medium bold heading + thin underline  
-### Subsection    → Small bold-italic heading
-- bullet          → • bullet point
-  - sub-point     → ◦ indented sub-bullet
-> text            → Grey callout box (use for definitions, warnings, key formulas)
+# Title            → Large bold heading + thick underline
+## Section         → Medium bold heading + thin underline  
+### Subsection     → Small bold heading
+- bullet           → • bullet point
+-- sub-point       → ◦ indented sub-bullet
+> text             → Grey callout box (use for definitions, warnings, key formulas)
 | Table | Header | → Styled table with bold header row
-**bold**          → Bold text
-`code`            → Courier font (use for inline code, variable names)
-[Name](url)       → Clickable blue hyperlink
-```code block```  → Grey code box in Courier font
----               → Horizontal divider line (use between ## sections)
+**bold**           → Bold text
+`code`             → Courier font (use for inline code, variable names)
+[Name](url)        → Clickable blue hyperlink
+```code block```   → Grey code box in Courier font
+---                → Horizontal divider line (use between ## sections)
 ─────────────────────────────────────────
 
 
