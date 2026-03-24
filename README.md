@@ -20,7 +20,15 @@ Upload a video and get:
 - AI-powered note structuring from raw transcript
 - One-click PDF export with styled formatting
 
+## 📄 Example Output
 
+### Input Video
+[▶ Watch on YouTube](https://www.youtube.com/watch?v=JdG1cVFyj5A)
+
+### Generated Notes
+<img src="assets/example-output.png" width="150"/>
+
+[📥 Download PDF](assets/example-output.pdf)
 ## 🛠️ Tech Stack
 
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
