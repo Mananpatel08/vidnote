@@ -26,9 +26,9 @@ Upload a video and get:
 [▶ Watch on YouTube](https://www.youtube.com/watch?v=JdG1cVFyj5A)
 
 ### Generated Notes
-<img src="assets/example-output.png" width="150"/>
+[<img src="assets/example-output.png" width="150"/>](assets/example-output.pdf)
 
-[📥 Download PDF](assets/example-output.pdf)
+[📄 Preview PDF](assets/example-output.pdf)
 ## 🛠️ Tech Stack
 
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
