@@ -1,5 +1,6 @@
 import React from "react";
 import { formatBytes, timeAgo } from "../utils";
+import { ArrowRight, History } from "lucide-react";
 
 export const HistorySection = ({
   history,
@@ -13,7 +14,7 @@ export const HistorySection = ({
         <div className="section-label">past uploads</div>
         {history.length === 0 ? (
           <div className="history-empty">
-            <div style={{ fontSize: 28 }}>○</div>
+            <History size={22} />
             <div>no history yet</div>
           </div>
         ) : (
@@ -39,7 +40,9 @@ export const HistorySection = ({
                     </div>
                   </div>
                 </div>
-                <div className="history-arrow">→</div>
+                <div className="history-arrow">
+                  <ArrowRight size={14} />
+                </div>
               </div>
             ))}
           </div>

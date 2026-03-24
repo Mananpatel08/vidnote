@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { Clapperboard, Play } from "lucide-react";
 import { formatBytes } from "../utils";
 
 export const UploadSection = ({
@@ -39,7 +40,9 @@ export const UploadSection = ({
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
         >
-          <div className="upload-icon">🎬</div>
+          <div className="upload-icon">
+            <Clapperboard />
+          </div>
           <div className="upload-title">Drop your lecture video</div>
           <div className="upload-sub">
             drag & drop or <span>click to browse</span> · mp4, mov, avi, mkv
@@ -56,7 +59,7 @@ export const UploadSection = ({
         {file && (
           <div className="file-selected">
             <div className="file-info">
-              <div className="file-icon">▶</div>
+              <div className="file-icon"><Play size={14} fill="currentColor"/></div>
               <div>
                 <div className="file-name">{file.name}</div>
                 <div className="file-size">{formatBytes(file.size)}</div>

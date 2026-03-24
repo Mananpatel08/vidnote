@@ -3,7 +3,7 @@ import pathlib
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import FileResponse
 from fastapi import HTTPException
-from backend.utils import extract_audio, transcribe_audio, generate_notes, create_pdf
+from utils import extract_audio, transcribe_audio, generate_notes, create_pdf
 
 router = APIRouter()
 

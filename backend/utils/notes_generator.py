@@ -1,4 +1,4 @@
-from backend.config.config import Settings
+from config.config import Settings
 from groq import Groq
 
 client = Groq(api_key=Settings.GROQ_API_KEY)

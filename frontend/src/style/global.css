@@ -351,9 +351,12 @@ body {
   color: var(--accent);
 }
 .badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-family: var(--mono);
-  font-size: 10px;
-  padding: 4px 10px;
+  font-size: 12px;
+  padding: 6px 12px;
   border-radius: 20px;
   background: var(--accent-dim);
   border: 1px solid var(--accent-border);
@@ -413,12 +416,36 @@ body {
 }
 
 .transcript-text {
+  position: relative;
+  padding-top: 25px;
   font-family: var(--mono);
   font-size: 12px;
   line-height: 2;
   color: var(--text-dim);
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.copy-btn {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.copy-btn:hover {
+  background: var(--bg3);
+  color: var(--text);
 }
 
 .notes-content {
@@ -543,6 +570,10 @@ body {
 }
 
 .new-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   margin-top: 8px;
   width: 100%;
   background: none;

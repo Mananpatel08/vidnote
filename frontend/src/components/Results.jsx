@@ -1,5 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { renderMarkdown } from "../utils";
+import {
+  ArrowDownToLine,
+  Check,
+  CircleCheck,
+  Clipboard,
+  FileText,
+  Plus,
+  StickyNote,
+} from "lucide-react";
 
 export const ResultsSection = ({
   activeTab,
@@ -8,6 +17,13 @@ export const ResultsSection = ({
   handleDownload,
   reset,
 }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(result.text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
   return (
     <>
       <div className="results">
@@ -15,7 +31,9 @@ export const ResultsSection = ({
           <div className="result-title">
             Your <span>Notes</span>
           </div>
-          <div className="badge">✓ complete</div>
+          <div className="badge">
+            <CircleCheck size={14} /> complete
+          </div>
         </div>
 
         <div className="tabs">
@@ -43,13 +61,21 @@ export const ResultsSection = ({
             />
           )}
           {activeTab === "transcript" && (
-            <div className="transcript-text">{result.text}</div>
+            <div className="transcript-text">
+              <button className="copy-btn" onClick={handleCopy}>
+                {copied ? <Check size={14} /> : <Clipboard size={14} />}
+                {copied ? "Copied" : "Copy"}
+              </button>
+              {result.text}
+            </div>
           )}
         </div>
 
         <div className="download-bar">
           <div className="download-info">
-            <div className="download-icon">📄</div>
+            <div className="download-icon">
+              <FileText size={16} fill="#fff" />
+            </div>
             <div>
               <div style={{ color: "var(--text)", fontWeight: 500 }}>
                 notes.pdf
@@ -58,12 +84,12 @@ export const ResultsSection = ({
             </div>
           </div>
           <button className="download-btn" onClick={handleDownload}>
-            ↓ Download PDF
+            <ArrowDownToLine size={16} /> Download PDF
           </button>
         </div>
 
         <button className="new-btn" onClick={reset}>
-          + new upload
+          <Plus size={14} /> new upload
         </button>
       </div>
     </>
