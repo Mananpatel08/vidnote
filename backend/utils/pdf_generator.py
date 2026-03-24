@@ -39,7 +39,7 @@ def get_styles():
         "h3": ParagraphStyle(
             "H3",
             fontSize=11,
-            fontName="Helvetica-BoldOblique",
+            fontName="Helvetica-Bold",
             textColor=colors.black,
             spaceAfter=3,
             spaceBefore=8,
@@ -105,7 +105,10 @@ def parse_table(lines, start_idx):
     if not table_lines:
         return None, i
 
-    table = Table(table_lines, hAlign="LEFT", colWidths=[80 * mm, 90 * mm])
+    available_width = 166 * mm
+    col_count = len(table_lines[0]) if table_lines else 2
+    col_width = available_width / col_count
+    table = Table(table_lines, hAlign="LEFT", colWidths=[col_width] * col_count)
     table.setStyle(
         TableStyle(
             [
@@ -180,11 +183,11 @@ def create_pdf(notes: str, filename: str = "outputs/notes.pdf") -> str:
         elif line.startswith("### "):
             content.append(Paragraph(md_to_reportlab(line[4:]), styles["h3"]))
 
-        elif line.startswith("  - ") or line.startswith("    - "):
+        elif line.startswith("-- "):
             # indented sub-bullet
             content.append(
                 Paragraph(
-                    f"◦  {md_to_reportlab(line.strip()[2:])}", styles["sub_bullet"]
+                    f"◦  {md_to_reportlab(line.strip()[3:])}", styles["sub_bullet"]
                 )
             )
 

@@ -447,7 +447,6 @@ body {
   background: var(--bg3);
   color: var(--text);
 }
-
 .notes-content {
   font-size: 13px;
   line-height: 1.8;
@@ -477,11 +476,23 @@ body {
 .notes-content ul {
   padding-left: 20px;
   margin-bottom: 10px;
+  list-style: disc;
 }
 .notes-content li {
   color: var(--text-dim);
   margin-bottom: 4px;
   font-size: 12px;
+}
+.notes-content li.sub-bullet {
+  list-style: none;
+  padding-left: 16px;
+  font-style: italic;
+  font-size: 11px;
+  margin-bottom: 3px;
+  margin-left: -4px;
+}
+.notes-content li.sub-bullet::before {
+  content: "◦  ";
 }
 .notes-content code {
   font-family: var(--mono);
@@ -518,6 +529,33 @@ body {
   border: none;
   border-top: 1px solid var(--border);
   margin: 16px 0;
+}
+.notes-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 12px;
+}
+.notes-content table thead tr {
+  background: var(--accent);
+  color: #fff;
+}
+.notes-content table thead td {
+  font-weight: 700;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+}
+.notes-content table tbody td {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.notes-content table tbody tr:nth-child(even) {
+  background: var(--bg3);
+}
+.notes-content a {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 /* Download bar */
