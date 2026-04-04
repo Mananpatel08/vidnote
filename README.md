@@ -129,7 +129,7 @@ vidNote/
 **1. Clone the repo**
 ```bash
 git clone https://github.com/Mananpatel08/vidnote.git
-cd vidNote
+cd vidnote
 ```
 
 **2. Add env files**
@@ -159,7 +159,7 @@ docker compose up --build
 **1. Clone the repo**
 ```bash
 git clone https://github.com/Mananpatel08/vidnote.git
-cd vidNote
+cd vidnote
 ```
 
 **2. Install FFmpeg**
